@@ -1,0 +1,493 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Manrope", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
+  --font-display: "Playfair Display", serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Theme color overrides mapped to a stunning Light Celestial / Ivory & Lavender palette */
+  /* We invert the zinc scale so dark layouts instantly become beautiful high-contrast light themed layouts */
+  --color-zinc-950: #ffffff; /* Luminous Pure White for primary cards */
+  --color-zinc-900: #f7f6fc; /* Ivory Base background */
+  --color-zinc-850: #f1eefb; /* Luminous soft container */
+  --color-zinc-800: #e4def5; /* Delicate border elements */
+  --color-zinc-700: #d4cee8;
+  --color-zinc-600: #b9adc9;
+  --color-zinc-500: #9385a8;
+  --color-zinc-400: #74678f;
+  --color-zinc-300: #554870; /* Slate-indigo medium text */
+  --color-zinc-200: #3c3057; /* Slate-indigo dark text */
+  --color-zinc-100: #1b123c; /* Extremely rich deep indigo-black for primary text */
+
+  /* Celestial Lavender / Purple tones */
+  --color-purple-950: #ffffff;
+  --color-purple-900: #fbf9fe;
+  --color-purple-800: #f5effd;
+  --color-purple-700: #e8ddfc;
+  --color-purple-650: #d9cafc;
+  --color-purple-600: #c5b2fa;
+  --color-purple-500: #7c3aed; /* Vibrant purple accent */
+  --color-purple-400: #6d28d9;
+  --color-purple-300: #5b21b6;
+  --color-purple-200: #4c1d95;
+  --color-purple-100: #2e1065;
+
+  /* Light Celestial Blues */
+  --color-indigo-950: #ffffff;
+  --color-indigo-900: #f4f6ff;
+  --color-indigo-800: #e2e8ff;
+  --color-indigo-700: #cbd5ff;
+  --color-indigo-600: #a5b4fc;
+  --color-indigo-500: #3b82f6;
+  --color-indigo-400: #2563eb;
+  --color-indigo-300: #1d4ed8;
+  --color-indigo-200: #1e3a8a;
+  --color-indigo-100: #172554;
+
+  /* Fuchsia and Rose mapped to Dusty Lavenders and Pinks */
+  --color-fuchsia-950: #ffffff;
+  --color-fuchsia-900: #fdf4ff;
+  --color-fuchsia-800: #fae8ff;
+  --color-fuchsia-700: #f5d0fe;
+  --color-fuchsia-600: #f0abfc;
+  --color-fuchsia-500: #d946ef;
+  --color-fuchsia-400: #c084fc;
+  --color-fuchsia-300: #a855f7;
+
+  --color-rose-500: #ec4899;
+  --color-rose-400: #f43f5e;
+
+  /* Pale greyish-lavender neutral sections */
+  --color-cyan-950: #ffffff;
+  --color-cyan-900: #f0fdfa;
+  --color-cyan-800: #ccfbf1;
+  --color-cyan-700: #99f6e4;
+  --color-cyan-600: #5eead4;
+  --color-cyan-500: #0d9488;
+  --color-cyan-400: #0f766e;
+  --color-cyan-300: #115e59;
+  --color-cyan-200: #134e4a;
+  --color-cyan-100: #042f2e;
+
+  /* Orange and Amber mapped perfectly */
+  --color-amber-950: #ffffff;
+  --color-amber-900: #fffbeb;
+  --color-amber-800: #fef3c7;
+  --color-amber-700: #fde68a;
+  --color-amber-650: #fcd34d;
+  --color-amber-600: #f59e0b;
+  --color-amber-550: #d97706;
+  --color-amber-500: #b45309;
+  --color-amber-450: #92400e;
+  --color-amber-400: #78350f;
+  --color-amber-300: #451a03;
+  --color-amber-200: #381504;
+  --color-amber-100: #200801;
+
+  --color-orange-950: #ffffff;
+  --color-orange-900: #fff7ed;
+  --color-orange-800: #ffedd5;
+  --color-orange-700: #fed7aa;
+  --color-orange-600: #f97316;
+  --color-orange-500: #ea580c;
+  --color-orange-400: #c2410c;
+}
+
+/* Custom scrollbars matching the light lavender theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f7f6fc;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(124, 58, 237, 0.2);
+  border-radius: 9px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(124, 58, 237, 0.35);
+}
+
+body {
+  background-color: #f7f6fd; /* Soft Ivory / Pale Lavender-Grey */
+  color: #1b123c; /* Deep Charcoal Indigo primary text */
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- LIGHT THEME GLASSMORPHISM AND CARD TRANSFORMS --- */
+
+/* Override dark background gradients and high-opacity black elements to make them premium translucent white gloss cards */
+.bg-gradient-to-br[class*="from-[#111126]"],
+.bg-gradient-to-br[class*="from-[#111126]/60"],
+.bg-gradient-to-br[class*="from-[#111126]/40"],
+.bg-gradient-to-br[class*="from-[#070710]"],
+.bg-gradient-to-br[class*="from-purple-950"],
+.bg-zinc-950\/45,
+.bg-white\/\[0\.02\],
+.bg-white\/\[0\.03\],
+.bg-white\/\[0\.01\],
+.bg-white\/\[0\.05\],
+.bg-white\/5,
+.bg-black\/95,
+.bg-black\/90,
+.bg-black\/85,
+.bg-black\/80,
+.bg-black\/60,
+.bg-black\/40,
+.bg-black\/20,
+[class*="bg-[#0c0e1a]"] {
+  background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.94) 0%, rgba(246, 244, 253, 0.88) 50%, rgba(255, 255, 255, 0.96) 100%) !important;
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(24px) !important;
+  border-color: rgba(124, 58, 237, 0.14) !important;
+  box-shadow: 0 10px 40px rgba(124, 58, 237, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Badge overrides for high contrast light theme */
+[class*="bg-sky-950/50"],
+[class*="bg-sky-950"] {
+  background-color: #e0f2fe !important;
+  color: #0369a1 !important;
+  border-color: #bae6fd !important;
+}
+
+[class*="bg-purple-950/50"],
+[class*="bg-purple-950"] {
+  background-color: #f3e8ff !important;
+  color: #6b21a8 !important;
+  border-color: #e9d5ff !important;
+}
+
+[class*="bg-rose-950/70"],
+[class*="bg-rose-950/80"],
+[class*="bg-rose-950"] {
+  background-color: #ffe4e6 !important;
+  color: #b91c1c !important;
+  border-color: #fecdd3 !important;
+}
+
+[class*="bg-emerald-950/80"],
+[class*="bg-emerald-950"] {
+  background-color: #d1fae5 !important;
+  color: #065f46 !important;
+  border-color: #a7f3d0 !important;
+}
+
+/* Ensure glowing text colors are high-contrast deep colors for light mode */
+.text-sky-400 {
+  color: #0284c7 !important;
+}
+.text-purple-400 {
+  color: #7c3aed !important;
+}
+.text-rose-400 {
+  color: #e11d48 !important;
+}
+.text-emerald-400 {
+  color: #059669 !important;
+}
+.text-amber-400 {
+  color: #b45309 !important;
+}
+.text-zinc-300 {
+  color: #3f3f46 !important;
+}
+.text-zinc-400 {
+  color: #52525b !important;
+}
+
+/* Ensure the sidebar has high contrast and is beautifully prominent */
+aside {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+  border-right: 1px solid rgba(124, 58, 237, 0.14) !important;
+  box-shadow: 6px 0 30px rgba(124, 58, 237, 0.04) !important;
+}
+
+/* Map specific hardcoded light lavender text colors to high-contrast dark indigo elements */
+[class*="text-[#CFC7E8]"] {
+  color: #3b2d73 !important;
+}
+[class*="text-[#A69FB8]"] {
+  color: #5d4d8c !important;
+}
+[class*="text-[#D8C2FF]"] {
+  color: #6d28d9 !important;
+}
+[class*="text-[#ebddec]"] {
+  color: #1b123c !important;
+}
+
+/* Ensure headers/titles/text using text-white are converted to gorgeous high-contrast deep text colors */
+/* Ensure headers/titles/text using text-white are converted to gorgeous high-contrast deep text colors */
+h1.text-white,
+h2.text-white,
+h3.text-white,
+h4.text-white,
+h5.text-white,
+h6.text-white,
+span.text-white,
+p.text-white,
+div.text-white,
+li.text-white,
+label.text-white,
+a.text-white,
+.text-white {
+  color: #1b123c !important;
+}
+
+/* --- COMPREHENSIVE HIGH-CONTRAST LIGHT MODE COLOR PALETTE --- */
+
+/* Convert all neutral/zinc text to dark indigo, slate, or charcoal */
+.text-zinc-100, [class*="text-zinc-100"] { color: #110e24 !important; }
+.text-zinc-200, [class*="text-zinc-200"] { color: #1b123c !important; }
+.text-zinc-300, [class*="text-zinc-300"] { color: #27272a !important; }
+.text-zinc-400, [class*="text-zinc-400"] { color: #3f3f46 !important; }
+.text-zinc-500, [class*="text-zinc-500"] { color: #4b5563 !important; }
+.text-zinc-600, [class*="text-zinc-600"] { color: #4b5563 !important; }
+.text-zinc-700, [class*="text-zinc-700"] { color: #374151 !important; }
+.text-zinc-800, [class*="text-zinc-800"] { color: #1f2937 !important; }
+.text-zinc-900, [class*="text-zinc-900"] { color: #111827 !important; }
+.text-zinc-950, [class*="text-zinc-950"] { color: #030712 !important; }
+
+/* Convert light purple text classes to rich readable deep purple */
+.text-purple-200, .text-purple-300, [class*="text-purple-200"], [class*="text-purple-300"] { color: #5b21b6 !important; }
+.text-purple-400, [class*="text-purple-400"] { color: #6d28d9 !important; }
+.text-purple-500, [class*="text-purple-500"] { color: #7c3aed !important; }
+.text-purple-600, [class*="text-purple-600"] { color: #5b21b6 !important; }
+.text-purple-700, [class*="text-purple-700"] { color: #4c1d95 !important; }
+.text-purple-800, [class*="text-purple-800"] { color: #2e1065 !important; }
+.text-purple-900, [class*="text-purple-900"] { color: #1e0842 !important; }
+.text-purple-950, [class*="text-purple-950"] { color: #12022b !important; }
+
+/* Convert light sky text to readable deep sky-blue */
+.text-sky-200, .text-sky-300, [class*="text-sky-200"], [class*="text-sky-300"] { color: #0369a1 !important; }
+.text-sky-400, [class*="text-sky-400"] { color: #0284c7 !important; }
+.text-sky-500, [class*="text-sky-500"] { color: #0369a1 !important; }
+.text-sky-600, [class*="text-sky-600"] { color: #075985 !important; }
+.text-sky-700, [class*="text-sky-700"] { color: #0c4a6e !important; }
+
+/* Convert amber classes to highly readable dark orange-brown */
+.text-amber-400, [class*="text-amber-400"] { color: #b45309 !important; }
+.text-amber-500, [class*="text-amber-500"] { color: #92400e !important; }
+.text-amber-600, [class*="text-amber-600"] { color: #78350f !important; }
+.text-amber-700, [class*="text-amber-700"] { color: #451a03 !important; }
+
+/* Convert other specific hex colors to readable deep values */
+.text-\[\#CFC7E8\], [class*="text-[#CFC7E8]"] { color: #312e81 !important; }
+.text-\[\#A69FB8\], [class*="text-[#A69FB8]"] { color: #4338ca !important; }
+.text-\[\#D8C2FF\], [class*="text-[#D8C2FF]"] { color: #6d28d9 !important; }
+.text-\[\#ebddec\], [class*="text-[#ebddec]"] { color: #1e1b4b !important; }
+
+/* --- REAL DARK CONTAINER OVERRIDES (where high-contrast white text is needed) --- */
+
+/* Containers that are genuinely dark in this light celestial theme */
+.bg-zinc-100, .bg-zinc-100 *,
+.bg-zinc-200, .bg-zinc-200 *,
+.bg-zinc-300, .bg-zinc-300 *,
+.bg-purple-400, .bg-purple-400 *,
+.bg-purple-350, .bg-purple-350 *,
+.bg-purple-300, .bg-purple-300 *,
+.bg-purple-200, .bg-purple-200 *,
+.bg-purple-100, .bg-purple-100 *,
+.bg-indigo-900, .bg-indigo-900 *,
+.bg-indigo-950, .bg-indigo-950 *,
+.bg-gray-900, .bg-gray-900 *,
+.bg-neutral-900, .bg-neutral-900 * {
+  color: #ffffff !important;
+}
+
+/* --- BUTTON CONTRAST RULE ENGINE --- */
+
+/* Dark Background Buttons -> Force White Text */
+button.bg-zinc-100,
+button.bg-zinc-100 *,
+button.bg-zinc-200,
+button.bg-zinc-200 *,
+button.bg-zinc-300,
+button.bg-zinc-300 *,
+button.bg-purple-400,
+button.bg-purple-400 *,
+button.bg-purple-500,
+button.bg-purple-500 *,
+button.bg-purple-600,
+button.bg-purple-600 *,
+button.bg-indigo-600,
+button.bg-indigo-600 *,
+button.bg-sky-600,
+button.bg-sky-600 *,
+button.bg-red-600,
+button.bg-red-600 *,
+button.bg-red-500,
+button.bg-red-500 *,
+button.bg-gradient-to-r:not(.from-\[\#D6B8FF\]),
+button.bg-gradient-to-r:not(.from-\[\#D6B8FF\]) * {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+}
+
+/* Light Background Buttons -> Force Dark Indigo Text */
+button.bg-zinc-950,
+button.bg-zinc-950 *,
+button.bg-zinc-900,
+button.bg-zinc-900 *,
+button.bg-zinc-850,
+button.bg-zinc-850 *,
+button.bg-zinc-800,
+button.bg-zinc-800 *,
+button.bg-zinc-700,
+button.bg-zinc-700 *,
+button.bg-white,
+button.bg-white *,
+button.bg-\[\#D8C2FF\],
+button.bg-\[\#D8C2FF\] *,
+button.bg-gradient-to-r.from-\[\#D6B8FF\],
+button.bg-gradient-to-r.from-\[\#D6B8FF\] * {
+  color: #1b123c !important;
+  font-weight: 800 !important;
+}
+
+/* Custom border overrides for clean borders instead of white dividers */
+[class*="border-white/10"],
+[class*="border-white/12"],
+[class*="border-white/5"],
+[class*="border-zinc-800"],
+[class*="border-zinc-850"],
+[class*="border-zinc-900"] {
+  border-color: rgba(124, 58, 237, 0.12) !important;
+}
+
+/* High-contrast beautiful input controls */
+input, select, textarea {
+  background-color: #ffffff !important;
+  color: #1b123c !important;
+  border: 1px solid rgba(124, 58, 237, 0.18) !important;
+}
+input::placeholder {
+  color: #9385a8 !important;
+}
+
+/* Custom cursor & text selections */
+@media (pointer: fine) {
+  html, body, button, a, select, input, option, textarea, [role="button"], .cursor-pointer {
+    cursor: none !important;
+  }
+}
+
+::selection {
+  background-color: rgba(124, 58, 237, 0.15);
+  color: #4c1d95;
+}
+
+/* --- ARCADE CRT STYLING OVERRIDES --- */
+.retro-cabinet-bezel {
+  background-color: #ffffff !important;
+  border: 10px solid #e4def5 !important;
+  box-shadow: 
+    0 20px 50px rgba(124, 58, 237, 0.08),
+    0 0 25px rgba(124, 58, 237, 0.12),
+    inset 0 0 35px rgba(124, 58, 237, 0.04) !important;
+  border-radius: 40px !important;
+}
+
+.crt-screen-inner {
+  background-color: #fbf9fe !important;
+  position: relative !important;
+  overflow: hidden !important;
+  border: 2px solid #e8ddfc !important;
+  box-shadow: inset 0 0 50px rgba(124, 58, 237, 0.03) !important;
+}
+
+/* scanlines animation */
+.crt-scanlines {
+  position: absolute !important;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0) 50%, 
+    rgba(124, 58, 237, 0.04) 50%
+  ), linear-gradient(
+    90deg, 
+    rgba(124, 58, 237, 0.02), 
+    rgba(124, 58, 237, 0.01), 
+    rgba(124, 58, 237, 0.02)
+  ) !important;
+  background-size: 100% 4px, 6px 100% !important;
+  z-index: 5 !important;
+  pointer-events: none !important;
+  animation: crt-flicker 0.18s infinite !important;
+}
+
+/* scanline scrolling */
+.crt-scrolling-line {
+  position: absolute !important;
+  width: 100% !important;
+  height: 120px !important;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(124, 58, 237, 0.03) 50%,
+    rgba(255, 255, 255, 0)
+  ) !important;
+  z-index: 6 !important;
+  pointer-events: none !important;
+  animation: crt-scroll-y 9s linear infinite !important;
+}
+
+/* moving arcade grid background */
+.arcade-grid-bg {
+  background-size: 40px 40px !important;
+  background-image: 
+    linear-gradient(to right, rgba(124, 58, 237, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(124, 58, 237, 0.04) 1px, transparent 1px) !important;
+  animation: grid-scroll-anim 16s linear infinite !important;
+}
+
+.arcade-grid-bg-cyan {
+  background-size: 40px 40px !important;
+  background-image: 
+    linear-gradient(to right, rgba(14, 165, 233, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(14, 165, 233, 0.04) 1px, transparent 1px) !important;
+  animation: grid-scroll-anim 16s linear infinite !important;
+}
+
+.arcade-grid-bg-gold {
+  background-size: 40px 40px !important;
+  background-image: 
+    linear-gradient(to right, rgba(245, 158, 11, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(245, 158, 11, 0.04) 1px, transparent 1px) !important;
+  animation: grid-scroll-anim 16s linear infinite !important;
+}
+
+@keyframes grid-scroll-anim {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 40px 40px;
+  }
+}
+
+@keyframes crt-scroll-y {
+  0% {
+    top: -120px;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+@keyframes crt-flicker {
+  0% { opacity: 0.98; }
+  50% { opacity: 1; }
+  100% { opacity: 0.985; }
+}
+
+/* custom pixel retro labels */
+.retro-pixel-font {
+  font-family: 'JetBrains Mono', monospace !important;
+  letter-spacing: 0.06em !important;
+  text-shadow: 0 0 8px currentColor !important;
+}

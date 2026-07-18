@@ -1,0 +1,6 @@
+{
+  "name": "Ghosted",
+  "description": "The ultimate Gen Z quiz platform combining brainrot predictions, general knowledge, and neon cosmic gamification.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
