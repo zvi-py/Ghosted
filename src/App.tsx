@@ -145,14 +145,27 @@ const AppContent: React.FC = () => {
               transition={{ duration: 0.25 }}
               className="px-4 py-4 md:px-8 border-b border-purple-200/40 bg-white/70 backdrop-blur-md relative z-30 flex items-center justify-between"
             >
-              <button
-                id="btn-back-to-dashboard"
-                onClick={() => setActiveTab('dashboard')}
-                className="px-4.5 py-2 text-[10px] font-mono tracking-widest uppercase bg-zinc-950 hover:bg-purple-600 text-white rounded-full transition-all duration-300 flex items-center gap-2 cursor-pointer shadow-md font-bold"
-              >
-                <ArrowLeft className="w-3.5 h-3.5 text-white" />
-                <span>BACK TO MAIN MENU</span>
-              </button>
+              <div className="flex items-center gap-2.5">
+                <button
+                  id="btn-back-to-dashboard"
+                  onClick={() => setActiveTab('dashboard')}
+                  className="px-4 py-2 text-[10px] font-mono tracking-widest uppercase bg-zinc-950 hover:bg-purple-600 text-white rounded-full transition-all duration-300 flex items-center gap-2 cursor-pointer shadow-md font-bold"
+                >
+                  <ArrowLeft className="w-3.5 h-3.5 text-white" />
+                  <span>BACK</span>
+                </button>
+
+                <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-white/80 border border-purple-200/50 rounded-full">
+                  <img
+                    src="/assets/aistudio/image_fd9cc78b.png"
+                    alt="Ghosted Logo"
+                    className="w-4 h-4 object-contain"
+                  />
+                  <span className="font-serif italic font-bold text-xs tracking-wider text-zinc-900">
+                    GHOSTED
+                  </span>
+                </div>
+              </div>
 
               <div className="flex items-center gap-3">
                 {/* Audio Hub Controls */}
@@ -180,31 +193,54 @@ const AppContent: React.FC = () => {
               </div>
             </motion.header>
           ) : (
-            /* Subtle dashboard helper bar at the very top (just a tiny transparent sign out button and coins tracker) */
-            <motion.div
-              key="dashboard-topbar"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="absolute top-4 right-4 md:right-8 z-30 flex items-center gap-4"
-            >
-              {/* Audio Hub Controls */}
-              <AudioHub />
-
-              <div className="flex items-center gap-1.5 font-mono text-xs text-amber-650 font-bold px-3.5 py-1.5 bg-white border border-purple-200/55 rounded-full shadow-2xs">
-                <Coins className="w-4 h-4 text-amber-500" />
-                <span>{user.coins}</span>
-              </div>
-
-              <button
-                id="dashboard-header-logout"
-                onClick={logout}
-                className="p-2 border border-purple-200/50 hover:border-red-400 bg-white hover:bg-red-50 text-zinc-500 hover:text-red-500 rounded-full cursor-pointer transition-all active:scale-95 shadow-2xs"
-                title="Sign Out"
+            <>
+              {/* Ghosted Brand Emblem with Custom Mascot Icon */}
+              <motion.div
+                key="dashboard-brand-badge"
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -10 }}
+                className="absolute top-4 left-4 md:left-8 z-30 flex items-center gap-2.5 px-3.5 py-1.5 bg-white/85 backdrop-blur-md border border-purple-200/55 rounded-full shadow-2xs"
               >
-                <LogOut className="w-4 h-4" />
-              </button>
-            </motion.div>
+                <img
+                  src="/assets/aistudio/image_fd9cc78b.png"
+                  alt="Ghosted Icon"
+                  className="w-5 h-5 object-contain"
+                />
+                <span className="font-serif italic font-bold text-xs tracking-wider text-zinc-950">
+                  GHOSTED
+                </span>
+                <span className="text-[9px] font-mono text-purple-600 font-bold bg-purple-50 px-1.5 py-0.5 rounded-full border border-purple-200/40">
+                  LIVE
+                </span>
+              </motion.div>
+
+              {/* Subtle dashboard helper bar at the very top (just a tiny transparent sign out button and coins tracker) */}
+              <motion.div
+                key="dashboard-topbar"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="absolute top-4 right-4 md:right-8 z-30 flex items-center gap-4"
+              >
+                {/* Audio Hub Controls */}
+                <AudioHub />
+
+                <div className="flex items-center gap-1.5 font-mono text-xs text-amber-650 font-bold px-3.5 py-1.5 bg-white border border-purple-200/55 rounded-full shadow-2xs">
+                  <Coins className="w-4 h-4 text-amber-500" />
+                  <span>{user.coins}</span>
+                </div>
+
+                <button
+                  id="dashboard-header-logout"
+                  onClick={logout}
+                  className="p-2 border border-purple-200/50 hover:border-red-400 bg-white hover:bg-red-50 text-zinc-500 hover:text-red-500 rounded-full cursor-pointer transition-all active:scale-95 shadow-2xs"
+                  title="Sign Out"
+                >
+                  <LogOut className="w-4 h-4" />
+                </button>
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
 
